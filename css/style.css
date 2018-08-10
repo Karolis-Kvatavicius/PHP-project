@@ -1,0 +1,88 @@
+body {
+    background-color: lightslategrey;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+textarea {
+    border-radius: 5px;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px black;
+}
+
+#file-name:focus {
+    outline: none;
+    box-shadow: 0 0 10px black;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+h1:hover {
+    color: white;
+}
+
+#version {
+    font-size: 18px;
+}
+
+/* #version:hover {
+visibility: visible;
+} */
+
+input {
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+}
+
+.button:hover {
+    background-color: green;
+    color: white;
+}
+
+#file-name {
+    width: 230px;
+}
+
+#delete-file:hover {
+    background-color: red;
+    color: white;
+}
+
+.fileEntries {
+    margin: 0;
+}
+
+#form {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dir a {
+    display: block;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+body .dir .active_dir {
+    color: darkblue;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+.dir a:nth-child(1), .dir a:nth-child(3) {
+    display: none;
+}
