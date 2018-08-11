@@ -11,7 +11,7 @@
 <h1>File Manager<span id="version"> v0.1</span></h1>
 <?php
 $current = '';
-$file = '';
+$file = 'files/text.txt';
 
 if(isset($_POST['create-new-file']) && $_POST['new-file-name'] != '') {
     fopen('files/' .$_POST['new-file-name']. '.txt', "w");
