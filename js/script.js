@@ -1,7 +1,6 @@
-$(window).ready(function(e) {
-    $('a').on('click', function(e) {
-        $('a').removeClass('active_dir');
-        $(this).addClass('active_dir');
-        // e.preventDefault();
+$(window).ready(function() {
+
+    window.onload(function() {
+        $('#currentFile').animate({padding: "0 0 0 250px"}, 500);
     });
-  });
+});

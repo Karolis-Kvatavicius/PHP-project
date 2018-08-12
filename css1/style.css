@@ -52,6 +52,8 @@ input {
 
 #file-name {
     width: 230px;
+    margin-left: 0;
+    margin-right: 20px;
 }
 
 #delete-file:hover {
@@ -85,4 +87,18 @@ text-decoration: underline;
 
 .dir a:nth-child(1), .dir a:nth-child(3) {
     display: none;
+}
+
+#currentFile {
+    padding-left: 250px;
+    color: darkblue;
+}
+
+#save-file {
+    margin-left: 0;
+}
+
+#save-file:hover {
+    color: white;
+    background-color: darkblue;
 }
