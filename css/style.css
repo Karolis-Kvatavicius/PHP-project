@@ -85,9 +85,9 @@ a:hover {
 text-decoration: underline;
 }
 
-.dir a:nth-child(1), .dir a:nth-child(3) {
+/* .dir a:nth-child(1), .dir a:nth-child(3) {
     display: none;
-}
+} */
 
 #currentFile {
     padding-left: 250px;
@@ -101,4 +101,30 @@ text-decoration: underline;
 #save-file:hover {
     color: white;
     background-color: darkblue;
+}
+
+#fileToUpload {
+    display: inline-block;
+    border: none;
+    background-color: green;
+}
+
+.login {
+    width: 200px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.login:hover {
+    background-color: brown;
+    color: white;
+}
+
+.login-p {
+    margin: 0;
+}
+
+#login-form {
+    display: flex;
+    justify-content: center;
 }

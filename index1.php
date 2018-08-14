@@ -1,10 +1,25 @@
+<?php
+session_start();
+
+if(isset($_POST['logout'])) {
+        session_destroy();
+        header('Location: http://localhost/PHP-project/PHP-project/login.php');
+        exit;
+}
+
+if (!isset($_SESSION['ar prisijunge']) || !$_SESSION['ar prisijunge'] === true) {
+
+        header('Location: http://localhost/PHP-project/PHP-project/login.php');
+        exit;
+}
+?>
 <!DOCTYPE html5>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" type="text/css" href="css1/style.css">
+   <link rel="stylesheet" type="text/css" href="css/style.css">
    <title>File manager</title>
 </head>
 <body>
@@ -12,22 +27,31 @@
 <?php
 $current = '';
 
-
 if(isset($_POST['file-name'])) {
    $file = $_POST['file-name'];
 }
 elseif(isset($_GET['file-name'])) {
    $file = $_GET['file-name'];
 }
-else $file = '';
+else {
+   $file = '';
+}
 
-// print_r($_REQUEST);
 
+if(isset($_POST['extension'])) {
+   $ext= $_POST['extension'];
+}
+elseif(isset($_GET['extension'])) {
+   $ext = $_GET['extension'];
+}
+else {
+   $ext = '';
+} 
 
 
 if(isset($_POST['create-new-file']) && $_POST['new-file-name'] != '') {
    fopen('files/' .$_POST['new-file-name']. '.txt', "w");
-   $file = $_POST['new-file-name'] . '.txt';
+   $file = $_POST['new-file-name'] . $ext;
 }
 
 if(isset($_POST['save'])) {
@@ -37,8 +61,7 @@ if(isset($_POST['save'])) {
 
 
 if($file) {
-   //$file = 'files/' .$_GET['file-name'];
-   @$current = file_get_contents('files/' .$file);
+   $current = file_get_contents('files/' .$file);
 }
 
 if(isset($_POST['delete-file'])) {
@@ -46,29 +69,22 @@ if(isset($_POST['delete-file'])) {
    $current = '';
 }
 
-
-
-/*
-if(isset($_POST['edit'])) {
-$current = file_get_contents($file);
+if (isset($_POST['submit'])) {
+        include 'uploadFile.php';
 }
-
-if(isset($_POST['confirm-edit'])) {
-   $edit_text = $_POST['editor'];
-   file_put_contents($file, $edit_text. "\n", LOCK_EX);
-}
-*/
-
-
-
-
 
 ?>
-<!-- Ka reiskia  -->
+<!-- Atidaro php ir iskart echo, siuo atveju $file  -->
 <h3 id="currentFile"><?= $file ?><?php if(isset($_POST['delete-file'])) echo ' file deleted' ?></h3>
 <div id="form">
-<form action="index.php" method="POST">
+
+<form action="index1.php" method="POST" enctype="multipart/form-data">
+<?php if($ext == 'txt' || $ext == ''):?>
 <textarea file-name="<?php $_GET['file-name'] ?>" style="width: 500px; height: 250px" name="editor" id="" cols="30" rows="10"><?php echo $current ?></textarea>
+<?php endif; ?>
+<?php if($ext == 'jpg'):?>
+<img style="width: 500px; height: 250px" src="files/<?= $file ?>" alt="">
+<?php endif; ?>
 <br>
 <div class="buttons1">
 <input id="file-name" type="text" name="new-file-name" file-name="<?php $_GET['file-name'] ?>" placeholder="File name" value="">
@@ -77,19 +93,21 @@ if(isset($_POST['confirm-edit'])) {
 </div>
 <div class="buttons2">
 <input id="save-file" class="button" type="submit" name="save" file-name="<?php $_GET['file-name'] ?>" value="Save">
-<!--
-<input class="button" type="submit" name="edit" file-name="<?php $_GET['file-name'] ?>" value="Edit">
-<input class="button" type="submit" name="confirm-edit" file-name="<?php $_GET['file-name'] ?>" value="Confirm edit">
--->
+<input style="color: white;" type="file" name="fileToUpload" id="fileToUpload">
+<input type="submit" value="Upload Image" name="submit">
 <input type="hidden" name="file-name" value="<?= $file ?>">
+<input type="hidden" name="extension" value="<?= $ext ?>">
+<input type="submit" name="logout" value="Logout">
 </div>
 </form>
 <?php
 if ($handle = opendir('files/')) {
    echo '<div class="dir">';
    while (false !== ($entry = readdir($handle))) {
-           // echo '<a href="#">' .$entry. '</a><br>';
-           echo '<a href="?type=text&file-name=' .$entry. '">' .$entry. '</a><br>';
+           if (preg_match('/\.(txt|jpg)$/', $entry, $mas)) {
+                echo '<a href="?type=text&file-name=' .$entry. '&extension=' .$mas[1]. '">' .$entry. '</a><br>';
+           }
+           
    }
    closedir($handle);
    echo '</div>';
