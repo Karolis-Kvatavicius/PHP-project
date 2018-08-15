@@ -22,6 +22,12 @@ h1 {
     text-align: center;
     margin-top: 40px;
     margin-bottom: 40px;
+    width: 240px;
+}
+
+h3 {
+    padding-left: 250px;
+    font-size: 14px;
 }
 
 h1:hover {
@@ -92,10 +98,20 @@ text-decoration: underline;
 #currentFile {
     padding-left: 250px;
     color: darkblue;
+    font-size: 20px;
 }
 
 #save-file {
-    margin-left: 0;
+    margin-left: 10px;
+}
+
+#uploadImage {
+    margin-left: 50px;
+}
+
+#uploadImage:hover {
+    color: white;
+    background-color: black;
 }
 
 #save-file:hover {
@@ -104,18 +120,46 @@ text-decoration: underline;
 }
 
 #fileToUpload {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+}
+
+#fileToUpload + label {
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    background-color: ghostwhite;
+    padding: 17px;
+    border-radius: 5px;
     display: inline-block;
-    border: none;
-    background-color: green;
+}
+
+#fileToUpload:focus + label,
+#fileToUpload + label:hover {
+    background-color: blueviolet;
+    color: white;
+}
+
+#fileToUpload + label {
+	cursor: pointer; /* "hand" cursor */
 }
 
 .login {
     width: 200px;
     margin: 0;
     margin-bottom: 20px;
+    outline: none;
 }
 
-.login:hover {
+.login:focus {
+    box-shadow: 0 0 10px black;
+}
+
+.login2:hover {
     background-color: brown;
     color: white;
 }
@@ -127,4 +171,24 @@ text-decoration: underline;
 #login-form {
     display: flex;
     justify-content: center;
+}
+
+.heading1 {
+    display: flex;
+    justify-content: center;
+}
+
+#manager {
+    width: 300px;
+}
+
+#logout {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
+
+#logout:hover {
+    color: white;
+    background-color: brown;
 }

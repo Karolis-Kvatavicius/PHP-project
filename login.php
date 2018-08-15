@@ -25,15 +25,16 @@ if(isset($_POST['enter_password']) && $_POST['user_name'] == $email
 } else {
     if (empty($_POST)) {
 ?>
-
+<div class="heading1">
 <h1>Please login</h1>
+</div>
 <form id="login-form" action="login.php" method="POST">
 <div>
 <p class="login-p">User name:</p><br>
 <input class="login" type="text" name="user_name"><br>
 <p class="login-p">Password:</p><br>
 <input class="login" type="password" name="password"><br>
-<input class="login" type="submit" name='enter_password' value="Login"><br>
+<input class="login login2" type="submit" name='enter_password' value="Login"><br>
 </div>
 </form>
 
